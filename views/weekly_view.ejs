@@ -1,13 +1,15 @@
-<% for(let habit of habits) {%>   
+<% for(let habit of habits) { %>
     <div class="container weekly-view">
         <!-- habit title -->
-        <div class="habit-title"> <h2><%= habit.title %></h2> </div>
+        <div class="habit-title">
+            <h2><%= habit.title %></h2>
+        </div>
 
         <!-- habit details in weekly view-->
         <div class="habit-container">
             <% for(let date of weeklyDates) { %>
                 <div class="day-container">
-                <!-- date -->
+                    <!-- date -->
                     <div class="calender">
                         <p><%= date %></p>
                     </div>
@@ -15,16 +17,15 @@
                         let found;
                         let status;
                         habit.dates.find((item) => {
-                            if(item.date === date)
-                            {
+                            if(item.date === date) {
                                 found = true;
                                 status = item.complete;
                             }
                         });
                     %>
-                <!-- complete status -->
-                    <div >
-                        <a href="/users/habit/toggle-status/?id=<%= habit._id%>&date=<%=date%>" class="mark-status">
+                    <!-- complete status -->
+                    <div>
+                        <a href="/users/habit/toggle-status/?id=<%= habit._id %>&date=<%= date %>" class="mark-status">
                             <% if(found && status=='y') { %>
                                 <i class="fas fa-check-circle" style="color: rgb(130, 189, 107)"></i>
                             <% } else if(found && status=='n') { %>
@@ -38,10 +39,26 @@
             <% } %>
             <!-- option to delete -->
             <div class="menu">
-                <a href="/users/habit/delete-habit/?id=<%=habit._id%>" style="text-decoration: none;">
+                <a href="/users/habit/delete-habit/?id=<%= habit._id %>" style="text-decoration: none;">
                     <i class="fa-regular fa-trash-can fa-lg" style="color: rgb(241, 121, 109);"></i>
                 </a>
             </div>
+            <!-- habit clock -->
+            <div class="habit-clock habit-clock-<%= habit._id %>"></div>
         </div>
     </div>
+
+    <script>
+        // Timer for habit clock
+    function updateHabitClock_<= habit._id >() {
+            var habitClocks = document.getElementsByClassName("habit-clock-<%= habit._id %>");
+            var currentTime = new Date().toLocaleTimeString();
+            for (var i = 0; i < habitClocks.length; i++) {
+                habitClocks[i].textContent = currentTime;
+            }
+        }
+
+        setInterval(updateHabitClock_<= habit._id >, 1000);
+        // Update every second
+    </script>
 <% } %>

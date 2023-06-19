@@ -1,48 +1,67 @@
-<% for(let habit of habits) {%>   
+<% for (let habit of habits) { %>
     <div class="container daily-view" style="display: none;">
-        <!-- habit title -->
-        <div class="habit-title"> <h2><%= habit.title %></h2> </div>
+        <!-- habit title with animated effect -->
+        <div class="habit-title">
+            <h2 class="animated-title"><%= habit.title %></h2>
+        </div>
 
-        <!-- habit details in daily view-->
+        <!-- habit details in daily view with background color transition -->
         <div class="habit-container">
-            <!-- complete status -->
-
+            <!-- complete status with pulsating effect -->
             <div class="mark-status-daily">
                 <% 
-                    let months = ["","Jan", "Feb", "March", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+                    let months = ["", "Jan", "Feb", "March", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
                     let startDate = habit.dates[0].date;
-                    let start = months[startDate.trim(" ")[0]] +" " +startDate.substring(2);
+                    let start = months[startDate.trim().split(" ")[0]] + " " + startDate.substring(2);
                 %>
-                <%=start%>
+                <div class="pulsating-marker"><%= start %></div>
             </div>
 
-            <!-- habit desciption -->
+            <!-- habit description with rotating animation -->
             <div class="habit-desc">
-                <% if(!habit.desc) { %>
-                    <p>- No description -</p>
+                <% if (!habit.desc) { %>
+                    <p class="rotate-desc">- No description -</p>
                 <% } else { %>
-                    <p><%= habit.desc %></p> 
+                    <p class="rotate-desc"><%= habit.desc %></p>
                 <% } %>
             </div>
 
-            <!-- options : edit, delete -->
-            <div class="menu">  
-                <a class="clickIt" id="<%= habit._id%>" style="text-decoration: none;">
+            <!-- habit time section -->
+            <div class="habit-time">
+                <p id="habit-clock-<%= habit._id %>"></p>
+            </div>
+
+            <!-- options: edit, delete with bounce effect -->
+            <div class="menu">
+                <a class="clickIt animated-icon" id="<%= habit._id %>" style="text-decoration: none;">
                     <i class="fa-solid fa-pencil fa-lg" style="color: rgb(241, 121, 109);"></i>
                 </a>
-                <!-- edit form -->
-                <div class="form-popup" id="myEditForm_<%= habit._id %>">
-                    <form action="users/habit/edit-habit/?id=<%= habit._id%>&user=<%=locals.user%>" id="editHabit" method="POST" class="form-container">
+
+                <!-- edit form with slide-in animation -->
+                <div class="form-popup animated-form" id="myEditForm_<%= habit._id %>">
+                    <form action="/users/habit/edit-habit/?id=<%= habit._id %>&user=<%= locals.user %>" id="editHabit" method="POST" class="form-container">
                         <input type="text" name="title" value="<%= habit.title %>" required>
                         <input type="text" name="desc" value="<%= habit.desc %>">
                         <button class="closeIt" type="reset" id="cancel-btn">Cancel</button>
                         <button type="submit" id="save-btn">Save</button>
                     </form>
                 </div>
-                <a href="/users/habit/delete-habit/?id=<%=habit._id%>" style="text-decoration: none;">
-                    <i class="fa-regular fa-trash-can fa-lg" style="color: rgb(241, 121, 109);"></i>
+
+                <a href="/users/habit/delete-habit/?id=<%= habit._id %>" style="text-decoration: none;">
+                    <i class="fa-regular fa-trash-can fa-lg animated-icon" style="color: rgb(241, 121, 109);"></i>
                 </a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Timer for habit clock
+        function updateHabitClock_<= habit._id >(){
+            var habitClock = document.getElementById("habit-clock-<%= habit._id %>");
+            var currentTime = new Date().toLocaleTimeString();
+            habitClock.textContent = currentTime;
+        }
+
+        setInterval(updateHabitClock_<= habit._id >, 1000); // Update every second
+    </script>
 <% } %>

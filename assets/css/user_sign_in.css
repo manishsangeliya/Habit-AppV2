@@ -1,43 +1,42 @@
 body {
-    margin: 0;
-    background-image: url(../img/main.jpg);
-    background-repeat: no-repeat;
-    background-size: 140vh 105vh;
-}
-
-.signin{
-    margin-left: 60%;
-    margin-right: 50px;
-    margin-top: 5%;
-    height: 480px;
-    background-color: rgb(169, 230, 225);
-    border-radius: 10%;
-    text-align: center;
-    padding: 2%;
+	margin: 0;
+	background-image: url(../img/main.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  
+  .signin {
+	margin-left: 60%;
+	margin-right: 50px;
+	margin-top: 5%;
+	height: 480px;
+	background-color: rgb(207, 207, 200);
+	border-radius: 10%;
+	text-align: center;
+	padding: 2%;
 	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-}
-.form {
-    display: flex;
-    flex-direction: column;
-}
-input{
-	width: 60%;
-	height: 20px;
-	/* background: #e0dede; */
-	/* justify-content: center; */
+  }
+  
+  .form {
 	display: flex;
+	flex-direction: column;
+  }
+  
+  input {
+	width: 60%;
+	height: 40px;
 	margin: 10px auto;
 	padding: 10px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
-}
-button{
+	font-size: 16px;
+  }
+  
+  button {
 	width: 60%;
 	height: 40px;
 	margin: 10px auto;
-	/* justify-content: center; */
-	/* display: block; */
 	color: #fff;
 	background-color: rgb(70, 131, 127);
 	font-size: 1em;
@@ -47,10 +46,80 @@ button{
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-}
-
-button:hover,
-button:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em  rgb(70, 131, 127);
-  transform: translateY(-0.25em);
-}
+	transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  button:hover,
+  button:focus {
+	box-shadow: 0 0.5em 0.5em -0.4em rgb(70, 131, 127);
+	transform: translateY(-0.25em);
+  }
+  
+  /* Additional Features */
+  
+  /* Improved Typography */
+  .signin {
+	font-family: Arial, sans-serif;
+  }
+  
+  input {
+	font-family: Arial, sans-serif;
+  }
+  
+  button {
+	font-family: Arial, sans-serif;
+  }
+  
+  /* Placeholder Styling */
+  input::placeholder {
+	color: #aaa;
+  }
+  
+  /* Hover and Focus Effects */
+  input:hover,
+  input:focus {
+	box-shadow: 0 0 0 2px rgba(70, 131, 127, 0.5);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+	.signin {
+	  margin-left: 10%;
+	  margin-right: 10%;
+	  height: auto;
+	  border-radius: 20px;
+	}
+  
+	input,
+	button {
+	  width: 80%;
+	}
+  }
+  
+  /* New Buttons */
+  .action-buttons {
+	display: flex;
+	justify-content: space-evenly;
+  }
+  
+  .action-button {
+	width: 120px;
+	height: 40px;
+	margin: 10px auto;
+	color: #fff;
+	background-color: rgb(70, 131, 127);
+	font-size: 1em;
+	font-weight: bold;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .action-button:hover,
+  .action-button:focus {
+	box-shadow: 0 0.5em 0.5em -0.4em rgb(70, 131, 127);
+	transform: translateY(-0.25em);
+  }
+  

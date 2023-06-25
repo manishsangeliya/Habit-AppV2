@@ -1,24 +1,36 @@
 <link rel="stylesheet" href="/css/header.css">
 
 <div class="nav">
-    <div class="title"> 
+    <div class="title">
         <a href="/">Habit Tracker</a>
     </div>
-    <% if (locals.user){ %>
+    <div class="timer">
+        <span id="timerValue"></span>
+    </div>
+    <% if (locals.user) { %>
         <div class="userPresent">
-            <div class="nameOfUser"><%= user.name%>  </div>
+            <div class="nameOfUser"><%= user.name %></div>
             <hr>
-            <div class="logOut"> <a href="/users/sign-out" > <i class="fa-solid fa-arrow-right-from-bracket" style="color: #e9f2ff;"></i> </a> </div>
+            <div class="logOut"> <a href="/users/sign-out"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #e9f2ff;"></i></a></div>
         </div>
-        <%} else { %>
-            <div class="noUser">
-                <ul>
-                    <li> <a href="/users/sign-in"> Sign In </a> </li>
-                    <hr>
-                    <li> <a href="/users/sign-up"> Sign Up </a> </li>
-                </ul>
-            </div>
-        
-        <%}%>   
-
+    <% } else { %>
+        <div class="noUser">
+            <ul>
+                <li> <a href="/users/sign-in">Sign In</a></li>
+                <hr>
+                <li> <a href="/users/sign-up">Sign Up</a></li>
+            </ul>
+        </div>
+    <% } %>
 </div>
+
+<script>
+    // Timer in header
+    function updateTimer() {
+        var timerValue = document.getElementById("timerValue");
+        var currentTime = new Date().toLocaleTimeString();
+        timerValue.textContent = currentTime;
+    }
+
+    setInterval(updateTimer, 1000); // Update every second
+</script>

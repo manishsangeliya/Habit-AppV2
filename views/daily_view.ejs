@@ -53,15 +53,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Timer for habit clock
-        function updateHabitClock_<= habit._id >(){
-            var habitClock = document.getElementById("habit-clock-<%= habit._id %>");
-            var currentTime = new Date().toLocaleTimeString();
-            habitClock.textContent = currentTime;
-        }
-
-        setInterval(updateHabitClock_<= habit._id >, 1000); // Update every second
-    </script>
 <% } %>

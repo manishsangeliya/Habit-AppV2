@@ -1,6 +1,10 @@
 // require express
 const express = require('express');
+<<<<<<< Updated upstream
 const port = 9000;
+=======
+const port = 8002;
+>>>>>>> Stashed changes
 const app = express();
 
 const expressLayouts = require('express-ejs-layouts');
